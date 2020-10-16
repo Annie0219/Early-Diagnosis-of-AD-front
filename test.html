@@ -1,0 +1,66 @@
+<html>
+    <body>
+        <button id="start">start</button>
+        <button id="stop">stop</button>
+        <button id="play">play</button>
+        <audio id="audio" controls></audio>
+    </body>
+    <script src="../static/js/recorder.js"></script>
+    <script>
+        let recorder = new Recorder({
+            sampleBits: 16,         // 采样位数，支持 8 或 16，默认是16
+            sampleRate: 16000,      // 采样率，支持 11025、16000、22050、24000、44100、48000，根据浏览器默认值，我的chrome是48000
+            numChannels: 1,         // 声道，支持 1 或 2， 默认是1
+            compiling: false,       // 是否边录边转换，默认是false
+        });
+        document.querySelector('#start').addEventListener('click', _=>{
+            recorder.start().then(() => {
+            // 开始录音
+            }, (error) => {
+                // 出错了
+                console.log(`${error.name} : ${error.message}`);
+            });
+        })
+        document.querySelector('#stop').addEventListener('click', _=>{
+           recorder.stop();
+           const blob = recorder.getPCMBlob();
+           const reader = new FileReader();
+           reader.readAsDataURL(blob);
+           reader.onloadend = function(){
+                // const result = this.result
+              document.querySelector('#audio').src = this.result
+              try {
+              const fordata = new FormData();
+              fordata.append('file', this.result)
+              fetch('https://sddqdhs.com/v1/ad/speech/file', {
+              method: 'post',
+              body: fordata,
+              })
+              .then(res => res.json())
+              .then(json => {
+                const formdata2 = new FormData();
+                formdata2.append('text', json.data);
+                fetch('https://sddqdhs.com/v1/ad/test', {
+                method: 'post',
+                body: formdata2,
+                }).then(res =>res.json())
+                .then(res => {
+                    console.log(res);
+                })
+              });
+              } catch (error) {
+                console.log(error)
+              }
+           }
+        })
+        document.querySelector('#play').addEventListener('click', _=>{
+            recorder.play();
+        })
+        // recorder.onprogress = function(params) {
+        //     console.log('录音时长', params.duration);
+        //     console.log('已录音文件大小（字节）', params.fileSize);
+        //     console.log('录音音量百分比', params.vol);
+        //     console.log('当前录音的总数据', params.data);
+        // }
+    </script>
+</html>

@@ -1,0 +1,76 @@
+/**index.wxss**/
+.HomeWrapper{
+    overflow: hidden;
+    width: 910px;
+    margin: 0 auto;
+}
+.container{
+    width: 800px;
+    margin: 0 auto;
+    color: #fff;
+}
+.background{
+    display: block;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: -1;
+}
+.title-visitor{
+    font-size: 66px;
+    text-align: center;
+    margin: 0 auto;
+    display: block;
+    position: absolute;
+    top: 11.6vh;
+    transform: translateX(-50%);
+    left: 50%;
+}
+.next-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 20vh;
+    width: 184px;
+    height: 184px;
+    z-index: 2;
+    background-color: rgb(140, 156, 250);
+    border-radius: 50%;
+    margin: 0 auto;
+    transform: translateX(-50%);
+    left: 50%;
+}
+.next-content{
+    width: 120px;
+    height: 120px;
+    background-color: #fff;
+    margin: 0 auto;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.next-icon{
+    width: 36px;
+}
+.title{
+    font-size: 36px;
+    margin: 0 auto;
+    display: block;
+    position: absolute;
+    bottom: 11.6vh;
+    transform: translateX(-50%);
+    left: 50%;
+}
+.about{
+    font-size: 28px;
+    margin: 0 auto;
+    display: block;
+    position: absolute;
+    bottom: 2.6vh;
+    transform: translateX(-50%);
+    left: 50%;
+    text-decoration: underline;
+}

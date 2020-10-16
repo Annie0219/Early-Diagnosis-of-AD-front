@@ -1,0 +1,192 @@
+
+body{
+    background-color: rgb(250, 251, 252);
+}
+/**index.wxss**/
+.HomeWrapper{
+    overflow: hidden;
+    width: 910px;
+    margin: 0 auto;
+}
+.container{
+    width: 800px;
+    height: 1200px;
+    margin: 0 auto;
+    color: #fff;
+}
+.background{
+    display: block;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: -1;
+}
+.goBack{
+    display: block;
+    width: 36px;
+    position: absolute;
+    left: 6vw;
+    top: 4.5vh;
+    z-index: 1;
+}
+.title{
+    position: absolute;
+    top: 8vh;
+    font-family: Rubik-Medium;
+    font-size: 44px;
+    color: #FFFFFF;
+    font-weight: bold;
+}
+.cards{
+    position: absolute;
+    width: 780px;
+    top: 16vh;
+    display: flex;
+    justify-content: space-between;
+}
+.card-item{
+    background: #FFFFFF;
+    box-shadow: 0 8px 26px 0 rgba(0,0,0,0.07);
+    border-radius: 12px;
+}
+.card-item-content{
+    padding: 20px;
+}
+.card-item-title{
+    display: flex;
+    align-items: center;
+    height: 5vh;
+}
+.card-item-icon{
+    display: block;
+    width: 50px;
+    margin-right: 10px;
+}
+.card-item-text{
+    font-family: Rubik-Regular;
+    font-size: 28px;
+    color: #7B7E86;
+}
+.card-item-score{
+    font-family: Rubik-Medium;
+    font-size: 56px;
+    color: #212020;
+    text-align: center;
+}
+.algorithm-title{
+    position: absolute;
+    top: 300px;
+    font-family: Rubik-Medium;
+    font-size: 32px;
+    color: #212020;
+    font-weight: bold;
+}
+.algorithm-card{
+    position: absolute;
+    z-index: 1;
+    top: 360px;
+    width: 780px;
+    background: #FFFFFF;
+    box-shadow: 0 8px 26px 0 rgba(0,0,0,0.07);
+    border-radius: 12px;
+}
+.card2{
+    top: 800px;
+    margin-top: 50px;
+    margin-bottom: 60vh;
+}
+.algorithm-card-content{
+    padding: 60px 40px;
+}
+.algorithm-card-item{
+    display: flex;
+    /* justify-content: space-between; */
+    align-items: center;
+    margin-bottom: 60px;
+}
+.algorithm-card-item:nth-last-child(1){
+    margin-bottom: 0;
+}
+.algorithm-card-icon{
+    width: 60px;
+    margin-right: 10px;
+}
+.algorithm-text{
+    font-family: Rubik-Regular;
+    font-size: 24px;
+    color: #404D66;
+    letter-spacing: 0;
+    line-height: 30px;
+    width: 20vw;
+}
+.in{
+    font-size: 8px;
+}
+.algorithm-text2{
+    font-family: Rubik-Regular;
+    font-size: 24px;
+    color: #404D66;
+    letter-spacing: 0;
+    line-height: 30px;
+    width: 30.7vw;
+}
+.algorithm-text3{
+    font-family: Rubik-Regular;
+    font-size: 24px;
+    color: #404D66;
+    letter-spacing: 0;
+    line-height: 30px;
+    width: 55.7vw;
+}
+.algorithm-progress{
+    background: #EEF1F3;
+    border-radius: 12.5px;
+    position: relative;
+    height: 20px;
+    flex: 1;
+    margin-right: 10px;
+}
+.algorithm-progressing{
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: #606DFB;
+    border-radius: 12.5px;
+    height: 100%;
+    width: 50%;
+}
+.algorithm-score{
+    font-family: Rubik-Medium;
+    font-size: 28px;
+    color: #606DFB;
+    font-weight: bold;
+}
+.Features-title{
+    position: absolute;
+    top: 800px;
+    font-family: Rubik-Medium;
+    font-size: 32px;
+    color: #212020;
+    font-weight: bold;
+}
+.report-btn{
+    margin: 0 auto;
+    text-align: center;
+    width: 700px;
+    height: 5.7vh;
+    font-weight: bold;
+    color: #151414;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: linear-gradient(135deg, #ffffff 0%, #ffffff 100%);
+    box-shadow: 0 10px 27px 0 rgba(0,0,0,0.07);
+    border-radius: 12px;
+    font-size: 32px;
+}
+.ppt{
+    margin: 20 auto;
+    font-size: 20px;
+    text-align: center;
+}

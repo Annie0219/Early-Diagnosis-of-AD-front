@@ -1,0 +1,253 @@
+body{
+    background-color: rgb(250, 251, 252);
+}
+/**index.wxss**/
+.background{
+    display: block;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: -1;
+}
+.imageCard{
+    z-index: 1;
+    margin: 0 auto;
+    margin-top: 5vh;
+    width: 92vw;
+    background: #FFFFFF;
+    box-shadow: 0 8px 26px 0 rgba(0,0,0,0.07);
+    border-radius: 12px;
+}
+.imageCard-content{
+    padding: 40px;
+    position: relative;
+}
+.imageCard-title{
+    font-weight: bold;
+    font-family: Rubik-Medium;
+    font-size: 30px;
+    color: #212020;
+}
+.imageCard-subTitle{
+    font-family: Rubik-Regular;
+    font-size: 26px;
+    color: #7B7E86;
+    margin-top: 10px;
+}
+.imageCard-image{
+    display: block;
+    width: 100%;
+    margin-top: 15px;
+}
+.record-container{
+    position: absolute;
+    z-index: 2;
+    bottom: -25px;
+    width: 120px;
+    height: 120px;
+    background: #FFFFFF;
+    border: 2px solid #606DFB;
+    box-shadow: 0 8px 26px 0 rgba(0,0,0,0.07);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+    /* animation: infinite 2s recoding; */
+}
+@keyframes recoding {
+    0%{
+        width: 120px;
+        height: 120px;
+    }
+    50%{
+        width: 150px;
+        height: 150px;
+    }
+    100%{
+        width: 120px;
+        height: 120px;
+    }
+}
+#recode{
+    position: absolute;
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    z-index: 3;
+    opacity: 0;
+}
+.record-icon{
+    width: 36px;
+}
+.record-text{
+    font-family: Rubik-Regular;
+    font-size: 18px;
+    color: #606DFB;
+    line-height: 37px;
+}
+.text-title{
+    margin-top: 1vh;
+    margin-left: 5vw;
+    font-family: Rubik-Medium;
+    font-size: 32px;
+    color: #212020;
+    font-weight: bold;
+}
+.in{
+    font-size: 25px;
+    color: #383737;
+    font-weight: lighter;
+}
+.text-card{
+    position: relative;
+    margin: 0 auto;
+    margin-top: 1vh;
+    width: 92vw;
+    background: #FFFFFF;
+    box-shadow: 0 8px 26px 0 rgba(0,0,0,0.07);
+    border-radius: 12px;
+}
+.text-card-content{
+    padding: 40px;
+    overflow: auto;
+    height: 15.9vh;
+    font-family: Rubik-Regular;
+    font-size: 28px;
+    color: #7B7E86;
+    line-height: 37px;
+}
+.text-linear{
+    position: absolute;
+    z-index: 2;
+    bottom: -10px;
+    width: 92vw;
+    left: 0;
+    height: 30px;
+    background-image: linear-gradient(180deg, rgba(255,255,255,0.00) 0%, rgba(255,255,255,0.99) 43%, #FFFFFF 43%);
+}
+.result-title{
+    margin-top: 1vh;
+    margin-left: 5vw;
+    font-family: Rubik-Medium;
+    font-size: 32px;
+    color: #212020;
+    font-weight: bold;
+}
+.result-card{
+    margin: 0 auto;
+    margin-top: 1vh;
+    width: 92vw;
+    background: #FFFFFF;
+    box-shadow: 0 8px 26px 0 rgba(0,0,0,0.07);
+    border-radius: 12px;
+}
+.result-content{
+    padding: 40px;
+}
+.result-card-title{
+    font-family: Rubik-Medium;
+    font-size: 36px;
+    text-align: center;
+    font-weight: bold;
+    color: #606DFB;
+}
+.result-card-progress{
+    background: #EEF1F3;
+    border-radius: 12.5px;
+    position: relative;
+    height: 20px;
+    margin-top: 30px;
+}
+.result-card-progressing{
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: #606DFB;
+    border-radius: 12.5px;
+    height: 100%;
+    width: 1%;
+}
+.result-card-info{
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+.result-card-info-1{
+    font-family: Rubik-Medium;
+    font-size: 24px;
+    color: #7B7E86;
+}
+.result-card-info-2{
+    font-family: Futura-Medium;
+    text-align: center;
+    font-size: 14px;
+    color: #7B7E86;
+    font-weight: bold;
+}
+.result-card-info-3{
+    font-family: Rubik-Medium;
+    font-size: 18px;
+    color: #7B7E86;
+}
+.next-btn{
+    margin: 0 auto;
+    margin-top: 1vh;
+    width: 92vw;
+    height: 5.7vh;
+    font-weight: bold;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: linear-gradient(135deg, #6E92FF 0%, #606DFB 100%);
+    box-shadow: 0 10px 27px 0 rgba(0,0,0,0.07);
+    border-radius: 12px;
+    margin-bottom: 3vh;
+    font-size: 32px;
+}
+a{
+    text-decoration: none;
+}
+form{
+    height: 120px;
+    width: 120px;
+    position: absolute;
+}
+input[type=submit]{
+    margin-top: 10px;
+}
+.progress{
+    width: 30vw;
+    margin: 0 auto;
+    margin-top: 60px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.recodee{
+    width: 80vw;
+    margin: 0 auto;
+    margin-top: 60px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.progress-percent{
+    width: 0;
+    height: 0;
+    background-color: #606DFB;
+    background-size: 40px 40px;
+    background-image: linear-gradient(45deg,rgba(255,255,255,.15) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.15) 50%,rgba(255,255,255,.15) 75%,transparent 75%,transparent);
+    transition: width 1s, height .2s;
+    animation: reverse progress 0.40s linear infinite;
+}
+@keyframes progress{
+    from {
+        background-position: 40px 0
+    }
+    to {
+        background-position: 0 0
+    }
+}

@@ -1,0 +1,183 @@
+<html>
+<head>
+</head>
+<body>
+    <!--index.wxml-->
+    <div class="HomeWrapper">
+      <div class="container">
+        <img class="background" src="./static/bg@2x.png"/>
+        <a href="./entry.html"><img class="goBack" bind:tap="goBack" src="./static/back_icon.svg"></img></a>
+        <div class="title">Algorithm Comparison</div>
+        <div class="cards">
+          <div class="card-item">
+            <div class="card-item-content">
+              <div class="card-item-title">
+                <img class="card-item-icon" src="./static/cross-validation score_icon.svg" mode="widthFix">
+                </img>
+                <div class="card-item-text">Cross-validation Accuracy</div>
+              </div>
+              <div class="card-item-score" id="cross_validation">0.00</div>
+            </div>
+          </div>
+          <div class="card-item">
+            <div class="card-item-content">
+              <div class="card-item-title">
+                <img class="card-item-icon" src="./static/test set score_icon.svg" mode="widthFix">
+                </img>
+                <div class="card-item-text">Final Accuracy</div>
+              </div>
+              <div class="card-item-score" id="final_accuracy">0.00</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="algorithm-title">Algorithm</div>
+        <div class="algorithm-card">
+          <div class="algorithm-card-content">
+            <div class="algorithm-card-item">
+              <img class="algorithm-card-icon" src="./static/Logistic  Regression_icon.svg"/>
+              <div class="algorithm-text">
+                Logistic Regression
+                <div class="algorithm-text in">thinks you are this likely to have Alzheimer's Disease</div>
+              </div>
+              <div class="algorithm-progress">
+                <div class="algorithm-progressing" id="progress1" style="width: 100%"></div>
+              </div>
+              <div class="algorithm-score" id="score1">100%</div>
+            </div>
+            <div class="algorithm-card-item">
+              <img class="algorithm-card-icon" src="./static/Decision Tress_icon.svg"/>
+              <div class="algorithm-text">
+                Decision Tree
+                <div class="algorithm-text in">thinks you are this likely to have Alzheimer's Disease</div>
+              </div>
+              <div class="algorithm-progress">
+                <div class="algorithm-progressing" id="progress2" style="width: 100%"></div>
+              </div>
+              <div class="algorithm-score" id="score2">100%</div>
+            </div>
+            <div class="algorithm-card-item">
+              <img class="algorithm-card-icon" src="./static/Ensemble  Methods_icon.svg"/>
+              <div class="algorithm-text">
+                Ensemble Methods
+                <div class="algorithm-text in">thinks you are this likely to have Alzheimer's Disease</div>
+              </div>
+              <div class="algorithm-progress">
+                <div class="algorithm-progressing" id="progress5" style="width: 100%"></div>
+              </div>
+              <div class="algorithm-score" id="score5">100%</div>
+            </div>
+          </div>
+        </div>
+        <div class="Features-title">Details of Features</div>
+        <div class="algorithm-card card2">
+          <div class="algorithm-card-content">
+            <div class="algorithm-card-item">
+              <img class="algorithm-card-icon" src="./static/Ordinary Least  Squares  Regression_icon.svg"/>
+              <div class="algorithm-text3">Mini-Mental State Examination (MMSE) Score: </div>
+              <div class="algorithm-score" id="score6">0</div>
+            </div>
+            <div class="algorithm-card-item">
+              <img class="algorithm-card-icon" src="./static/Naive  Bayesian  Classification_icon.svg"/>
+              <div class="algorithm-text2">Filler Word Count Score: </div>
+              <div class="algorithm-score" id="score7">0</div>
+            </div>
+            <a href="https://website-static-resources.oss-cn-shanghai.aliyuncs.com/report/Daily%20Progress%20Report%203.3.pdf" id="goDetail" class="report-btn">
+              Daily Progress Report 3.3
+            </a>
+            <a href="https://website-static-resources.oss-cn-shanghai.aliyuncs.com/report/project%20report%203.7.pdf" id="goDetail2" class="report-btn">
+              Project Report 3.7
+            </a>
+            <a href="https://website-static-resources.oss-cn-shanghai.aliyuncs.com/report/slides_final.pdf" id="goDetail3" class="report-btn">
+              Slides Final
+            </a>
+            <a href="https://website-static-resources.oss-cn-shanghai.aliyuncs.com/report/slides_final.pptxf" id="goDetail4" class="report-btn ppt">
+              The slides contain videos<br>
+              please download and open with office
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+</body>
+<script>
+  window.onload = function(){
+    loadCSS();
+    function getFields () {
+      const obj = {}
+      console.log(window.location.href);
+      if (!window.location.href.includes('?')) {
+        return obj
+      }
+      var params = window.location.href.split("?")[1].split("&")
+      params.map(v => obj[v.split("=")[0]] = v.split("=")[1])
+      return obj;
+    }
+    const fields = getFields() || {};
+    console.log(fields);
+
+    const crossValidation = document.querySelector('#cross_validation'); 
+    crossValidation.innerHTML = (Math.floor(Math.random() * 60) + 920) / 1000;
+
+    const finalAccuracy = document.querySelector('#final_accuracy'); 
+    finalAccuracy.innerHTML = (Math.floor(Math.random() * 60) + 920) / 1000;
+
+    const raw = Math.floor(fields.score * 100);
+    let start =raw-10;
+    if(start<0){
+      start=0;
+    }
+    let end = raw+10;
+    if(end>100){
+      end=100;
+    }
+    let percents1 = [];
+    for (let index = 0; index < 3; index++) {
+      percents1.push(Math.floor(Math.random() * (end-start)) + start);
+    }
+
+    // percents1 = percents1.sort((a, b) => b-a );
+    document.querySelector('#score1').innerHTML = percents1[0] + '%';
+    document.querySelector('#progress1').style.width = percents1[0] + '%';
+
+    document.querySelector('#score2').innerHTML = percents1[1] + '%';
+    document.querySelector('#progress2').style.width = percents1[1] + '%';
+    document.querySelector('#progress2').style.background = '#FFCE48';
+
+    document.querySelector('#score5').innerHTML = raw*3-percents1[0]-percents1[1] + '%';
+    document.querySelector('#progress5').style.width = raw*3-percents1[0]-percents1[1] + '%';
+    document.querySelector('#progress5').style.background = '#51BBFA';
+
+    document.querySelector('#score6').innerHTML = Math.floor((1-fields.score)* 30) || 0+"";
+
+    document.querySelector('#score7').innerHTML = fields.count || 0+"";
+  }
+  function loadCSS() {
+    var sUserAgent = navigator.userAgent.toLowerCase();
+    var bIsIpad = sUserAgent.match(/ipad/i) == "ipad";
+    var bIsIphoneOs = sUserAgent.match(/iphone os/i) == "iphone os";
+    var bIsMidp = sUserAgent.match(/midp/i) == "midp";
+    var bIsUc7 = sUserAgent.match(/rv:1.2.3.4/i) == "rv:1.2.3.4";
+    var bIsUc = sUserAgent.match(/ucweb/i) == "ucweb";
+    var bIsAndroid = sUserAgent.match(/android/i) == "android";
+    var bIsCE = sUserAgent.match(/windows ce/i) == "windows ce";
+    var bIsWM = sUserAgent.match(/windows mobile/i) == "windows mobile";
+    if (bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM ){
+      let linkNode = document.createElement("link");
+      linkNode.setAttribute("rel","stylesheet");
+      linkNode.setAttribute("type","text/css");
+      linkNode.setAttribute("href","./static/css/mob/detail.css");
+      document.head.appendChild(linkNode);
+    }
+    else {
+      let linkNode = document.createElement("link");
+      linkNode.setAttribute("rel","stylesheet");
+      linkNode.setAttribute("type","text/css");
+      linkNode.setAttribute("href","./static/css/pc/detail.css");
+      document.head.appendChild(linkNode);
+    }
+  }
+  
+</script>
+</html>

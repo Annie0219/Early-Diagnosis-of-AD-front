@@ -1,0 +1,188 @@
+<html>
+<head>
+
+</head>
+<body>
+<div class="HomeWrapper">
+    <!--index.wxml-->
+    <div class="container">
+        <img class="background" src="./static/bg@2x.png"/>
+        <div class="imageCard">
+            <div class="imageCard-content">
+                <div class="imageCard-title">Language Capability Test of Alzheimers Disease Diagnosis Boston Cookie Theft</div>
+                <div class="imageCard-subTitle">Tell me everything you see in this picture that is happening</div>
+                <image class="imageCard-image" src="./static/Boston@2x.png"></image>
+                <div class="record-container" id="recoder">
+                    <img class="record-icon" id = "ri" src="./static/Recording_icon.svg" />
+                    <div class="record-text" id = "rt">
+                        Ready
+                    </div>
+                    <!-- <input id="recode" type="file" accept="audio/*" capture="microphone"> -->
+                </div>
+            </div>
+        </div>
+        <div class="progress">
+            <div class="progress-percent" id="progress_percent"></div>
+        </div>
+        <div class="recodee" id="recodees" hidden="hidden">
+            <img class="recoding-pic" id="recoding-pic" src="./static/recording2.gif"/>
+        </div>
+        <div class="text-title">Text<div class="text-title in"> please wait 20"~30" for analysis</div></div>
+        <div class="text-card">
+            <div class="text-card-content" id="text">
+                click on the microphone to start recording
+            </div>
+            <div class="text-linear"></div>
+        </div>
+        <div class="result-title">Result</div>
+        <div class="result-card">
+            <div class="result-content">
+                <div class="result-card-title" id="cardTitle">Diagnostic Result</div>
+                <div class="result-card-progress">
+                    <div class="result-card-progressing" id="progressing"></div>
+                </div>
+                <div class="result-card-info">
+                    <div class="result-card-info-1"></div>
+                    <div class="result-card-info-2" id="score">0%</div>
+                    <div class="result-card-info-3"></div>
+                </div>
+                <div class="result-card-info">
+                    <div class="result-card-info-1">Healthy</div>
+                    <div class="result-card-info-2">Normal Cognition 0% - 16%<br>
+                        Mild Dementia 17% - 30%<br>
+                        Moderate Dementia 31% - 56%<br>
+                        Severe Dementia 57% - 100%
+                    </div>
+                    <div class="result-card-info-3">Probable Alzheimer <br>Disease Patient</div>
+                </div>
+            </div>
+        </div>
+        <a href="./detail.html" id="goDetail" class="next-btn">
+            Check the detailed analysis
+        </a>
+    </div>
+</div>
+
+</body>
+<!-- <script src="https://cdn.bootcss.com/vConsole/3.3.4/vconsole.min.js"></script> -->
+<!-- <script src="https://unpkg.com/axios/dist/axios.min.js"></script> -->
+<script src="./static/js/recorder.js"></script>
+<script>
+
+   let recoding = false;
+    window.onload = function(){
+        loadCSS();
+      let recorder = new Recorder({
+          sampleBits: 16,         // 采样位数，支持 8 或 16，默认是16
+          sampleRate: 16000,      // 采样率，支持 11025、16000、22050、24000、44100、48000，根据浏览器默认值，我的chrome是48000
+          numChannels: 1,         // 声道，支持 1 或 2， 默认是1
+          compiling: false,       // 是否边录边转换，默认是false
+      });
+      const cTitle = document.getElementById("cardTitle");
+      const rIcon = document.getElementById("ri");
+      const rText = document.getElementById("rt");
+      const resultText = document.getElementById("text");
+      const recoderConst = document.getElementById("recoder");
+      const progressPercent = document.querySelector('#progress_percent');
+      const recodeImg = document.getElementById('recodees');
+      recoderConst.addEventListener('click', doRecoder);
+        function doRecoder(){
+          console.log(111111);
+            if (recoding) {
+                recoding = false;
+                recorder.stop();
+                // recoderConst.removeEventListener('click', doRecoder);
+                rIcon.setAttribute("src","./static/texting_icon.gif");
+                rText.innerHTML = "Analyzing";
+                const blob = recorder.getPCMBlob();
+                const reader = new FileReader();
+                reader.readAsDataURL(blob);
+                resultText.innerHTML = "analyzing, please wait...";
+                recodeImg.setAttribute("hidden", true);
+                progressPercent.style.width = '33%';
+                progressPercent.style.height = '60px';
+                reader.onloadend = function(){
+                    const formdata1 = new FormData();
+                    formdata1.append('file', this.result)
+                    fetch('https://api.kafkascat.com/v1/ad/speech/file', {
+                        method: 'post',
+                        body: formdata1,
+                    })
+                        .then(res => res.json())
+                        .then(json => {
+                            if(!json.data){
+                                resultText.innerHTML = "the recording is not clear, please try again";
+                                rIcon.setAttribute("src","./static/Recording_icon.svg");
+                                rText.innerHTML = "Ready";
+                                progressPercent.style.height = '0'; 
+                                return;
+                            }else{
+                                resultText.innerHTML = json.data;
+                            }
+                            progressPercent.style.width = '66%';
+                            const formdata2 = new FormData();
+                            formdata2.append('text', json.data);
+                            fetch('https://api.kafkascat.com/v1/ad/test', {
+                                method: 'post',
+                                body: formdata2,
+                            }).then(res =>res.json())
+                                .then(res => {
+                                    console.log(res);
+                                   document.querySelector('#goDetail').setAttribute('href', `./detail.html?score=${res.data.score}&count=${res.data.count}`);
+                                    progressPercent.style.width = '100%';
+                                    setTimeout(() => {
+                                      progressPercent.style.height = '0'; 
+                                    }, 1000);
+                                    cTitle.innerHTML = res.data && res.data.text;
+                                    document.querySelector('#score').innerHTML = parseInt(res.data.score * 100) + '%';
+                                    document.querySelector('#progressing').style.width = res.data.score * 100 + '%';
+                                    rText.innerHTML = "Ready";
+                                    recoderConst.addEventListener('click', doRecoder);
+                                    rIcon.setAttribute("src","./static/Recording_icon.svg");
+                                })
+                        });
+                }
+            }else{
+                recorder.start().then(() => {
+                    // 开始录音
+                    resultText.innerHTML = "you are recording ...click again to end...";
+                    recodeImg.removeAttribute("hidden");
+                    rIcon.setAttribute("src","./static/recoding.gif");
+                    document.querySelector('#score').innerHTML = '0%';
+                    document.querySelector('#progressing').style.width = '1%';
+                    rText.innerHTML = "Recording";
+                }, (error) => {
+                    // 出错了
+                    console.log(`${error.name} : ${error.message}`);
+                });
+                recoding = true;
+            }
+        }
+    }
+   function loadCSS() {
+       var sUserAgent = navigator.userAgent.toLowerCase();
+       var bIsIpad = sUserAgent.match(/ipad/i) == "ipad";
+       var bIsIphoneOs = sUserAgent.match(/iphone os/i) == "iphone os";
+       var bIsMidp = sUserAgent.match(/midp/i) == "midp";
+       var bIsUc7 = sUserAgent.match(/rv:1.2.3.4/i) == "rv:1.2.3.4";
+       var bIsUc = sUserAgent.match(/ucweb/i) == "ucweb";
+       var bIsAndroid = sUserAgent.match(/android/i) == "android";
+       var bIsCE = sUserAgent.match(/windows ce/i) == "windows ce";
+       var bIsWM = sUserAgent.match(/windows mobile/i) == "windows mobile";
+       if ((bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM) ){
+           let linkNode = document.createElement("link");
+           linkNode.setAttribute("rel","stylesheet");
+           linkNode.setAttribute("type","text/css");
+           linkNode.setAttribute("href","./static/css/mob/entry.css");
+           document.head.appendChild(linkNode);
+       }
+       else {
+           let linkNode = document.createElement("link");
+           linkNode.setAttribute("rel","stylesheet");
+           linkNode.setAttribute("type","text/css");
+           linkNode.setAttribute("href","./static/css/pc/entry.css");
+           document.head.appendChild(linkNode);
+       }
+   }
+</script>
+</html>

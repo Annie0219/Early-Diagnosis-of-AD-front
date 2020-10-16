@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="36px" height="36px" viewBox="0 0 36 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59 (86127) - https://sketch.com -->
+    <title>back_icon</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Icon-/-Back" transform="translate(-7.000000, -7.000000)">
+            <g id="icon-/-back">
+                <rect id="bound" fill-rule="nonzero" x="0" y="0" width="48" height="48"></rect>
+                <path d="M22.4243429,11.2478235 C23.1034442,11.907522 23.1191734,12.9928337 22.4594749,13.6719351 L12.7643877,23.6511585 L41.2814857,23.6511849 C42.2282596,23.6511849 42.9957714,24.4186967 42.9957714,25.3654706 C42.9957714,26.3122444 42.2282596,27.0797563 41.2814857,27.0797563 L12.7643877,27.0791585 L22.4594749,37.0590061 C23.1191734,37.7381075 23.1034442,38.8234192 22.4243429,39.4831176 C21.7452415,40.1428161 20.6599298,40.127087 20.0002313,39.4479856 L7.67382892,26.759042 C6.91990727,25.9829461 6.91990727,24.747995 7.67382892,23.9718992 L20.0002313,11.2829556 C20.6599298,10.6038542 21.7452415,10.5881251 22.4243429,11.2478235 Z" id="icon-back" fill="#FFFFFF" fill-rule="nonzero"></path>
+            </g>
+        </g>
+    </g>
+</svg>

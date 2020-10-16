@@ -1,0 +1,57 @@
+<html>
+<head>
+
+</head>
+<body>
+    <!--index.wxml-->
+    <div class="HomeWrapper">
+        <div class="container">
+            <img class="background" src="./static/background.jpg"/>
+            <div class="title-visitor" id="visitor">You are the 0 visitor</div>
+            <div class="next-container">
+                <div class="next-content">
+                    <a href="./entry.html">
+                        <img src="./static/go.svg" class="next-icon" />
+                    </a>
+                </div>
+            </div>
+            <div class="title">Health Evaluation</div>
+            <div class="about"><a href="https://en.m.wikipedia.org/wiki/Alzheimer%27s_disease">About Alzheimer Disease</a></div>
+        </div>
+    </div>
+</body>
+<script>
+    window.onload = function(){
+        loadCSS();
+        fetch('https://api.kafkascat.com/v1/ad/num', {
+            method: 'get'
+        }).then(res => res.json()).then(json => {
+            document.querySelector('#visitor').innerHTML ="You are the No."+json.data+" visitor!"
+        });
+    }
+    function loadCSS() {
+        var sUserAgent = navigator.userAgent.toLowerCase();
+        var bIsIpad = sUserAgent.match(/ipad/i) == "ipad";
+        var bIsIphoneOs = sUserAgent.match(/iphone os/i) == "iphone os";
+        var bIsMidp = sUserAgent.match(/midp/i) == "midp";
+        var bIsUc7 = sUserAgent.match(/rv:1.2.3.4/i) == "rv:1.2.3.4";
+        var bIsUc = sUserAgent.match(/ucweb/i) == "ucweb";
+        var bIsAndroid = sUserAgent.match(/android/i) == "android";
+        var bIsCE = sUserAgent.match(/windows ce/i) == "windows ce";
+        var bIsWM = sUserAgent.match(/windows mobile/i) == "windows mobile";
+        if (bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM ){
+            let linkNode = document.createElement("link");
+            linkNode.setAttribute("rel", "stylesheet");
+            linkNode.setAttribute("type", "text/css");
+            linkNode.setAttribute("href", "./static/css/mob/index.css");
+            document.head.appendChild(linkNode);
+        } else {
+            let linkNode = document.createElement("link");
+            linkNode.setAttribute("rel", "stylesheet");
+            linkNode.setAttribute("type", "text/css");
+            linkNode.setAttribute("href", "./static/css/pc/index.css");
+            document.head.appendChild(linkNode);
+        }
+    }
+</script>
+</html>
